@@ -6,6 +6,14 @@ name: Node.js CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+jobs:    
+  torelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload firmware to release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: 发布名称
+#           tag_name: ${{ steps.tag.outputs.release_tag }}
+#           body_path: release.txt
+#           files: ${{ env.FIRMWARE }}/*
