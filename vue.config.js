@@ -1,1 +1,1 @@
-module.exports = { outputDir: 'dist' }
+module.exports = { outputDir: 'dist',publicPath:'' }
