@@ -10,10 +10,21 @@ jobs:
   torelease:
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d")-yeahlam"
+          echo "::set-output name=release_date::$(date +"%Y.%m.%d")"
+          touch release.txt
+          echo "试试release.txt" >> release.txt
+          echo "::set-output name=status::success"
+
       - name: Upload firmware to release
         uses: softprops/action-gh-release@v1
         with:
           name: 发布名称
-#           tag_name: ${{ steps.tag.outputs.release_tag }}
-#           body_path: release.txt
+          body_path: release.txt
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+            
 #           files: ${{ env.FIRMWARE }}/*
